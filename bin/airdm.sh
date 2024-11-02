@@ -1,31 +1,25 @@
 #!/bin/bash
 
-# Mensaje de bienvenida
-echo "=== Bienvenido al gestor de inicio de sesión en texto ==="
+# Función para iniciar una sesión X
+start_x_session() {
+    exec startx
+}
 
-# Solicitar nombre de usuario
-read -p "Usuario: " usuario
+# Función para mostrar el menú de inicio de sesión
+show_login_screen() {
+    clear
+    echo "Bienvenido a Mi Gestor de Pantalla"
+    echo "Ingrese su nombre de usuario: "
+    read USERNAME
 
-# Intentos de autenticación
-intentos=3
+    echo "Ingrese su contraseña: "
+    read -s PASSWORD
 
-for ((i=1; i<=intentos; i++)); do
-    # Solicitar contraseña de manera segura
-    read -sp "Contraseña: " password
-    echo
+    # Aquí podrías implementar la verificación de contraseña
 
-    # Intentar autenticar al usuario
-    if echo "$password" | su -c true "$usuario" 2>/dev/null; then
-        echo "Autenticación exitosa. Iniciando sesión gráfica..."
+    # Iniciar sesión
+    start_x_session
+}
 
-        # Iniciar una sesión gráfica en X11 con Awesome
-        su - "$usuario" -c 'startx /usr/bin/awesome'
-        exit 0
-    else
-        echo "Credenciales incorrectas. Intento $i de $intentos."
-    fi
-done
-
-# Mensaje de salida después de tres intentos fallidos
-echo "Número máximo de intentos alcanzado. Abortando."
-exit 1
+# Llamar a la función para mostrar la pantalla de inicio de sesión
+show_login_screen

@@ -1,13 +1,9 @@
 [Unit]
-Description=Gestor de inicio de sesión en texto
-After=multi-user.target
+Description=Mi Gestor de Pantalla
 
 [Service]
-ExecStart=/usr/local/bin/airdm.sh
-StandardInput=tty
-StandardOutput=tty
+ExecStart=/ruta/a/mi_display_manager/start_dm.sh
 Restart=always
-User=root
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=graphical.target
