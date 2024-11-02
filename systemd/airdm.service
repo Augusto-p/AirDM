@@ -1,0 +1,13 @@
+[Unit]
+Description=Gestor de inicio de sesión en texto
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/local/bin/airdm.sh
+StandardInput=tty
+StandardOutput=tty
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
