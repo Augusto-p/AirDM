@@ -1,9 +1,17 @@
 [Unit]
-Description=Mi Gestor de Pantalla
+Description=Awesome WM Login Display Manager
+After=systemd-user-sessions.service
 
 [Service]
-ExecStart=/ruta/a/mi_display_manager/start_dm.sh
-Restart=always
+ExecStart=/ruta/a/awesome_login.sh
+StandardInput=tty-fail
+StandardOutput=tty
+TTYPath=/dev/tty1
+TTYReset=yes
+TTYVHangup=yes
+KillMode=process
+IgnoreSIGPIPE=no
+SendSIGHUP=yes
 
 [Install]
 WantedBy=graphical.target
